@@ -22,11 +22,12 @@ export default function DeletePopup({closeModal,deleteId}) {
                 className="bg-red-500 text-white text-3xl px-4 rounded shadow-lg"
                 onClick={()=>{
                   deleteData(deleteId)
-                    console.log(result)
-                  if(result.deleteResult){
-                    closeModal(false)
-                    console.log(result)
-                  }
+                  //   console.log(result)
+                  // if(result.deleteResult){
+                  //   closeModal(false)
+                  //   console.log(result)
+                  // }
+                  closeModal(false)
                 }}
                 >Delete</button>
             </div>

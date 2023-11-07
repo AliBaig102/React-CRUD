@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useCRUD } from '../contexts';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddData() {
   // const history=usehis
@@ -7,10 +8,10 @@ export default function AddData() {
   const [student_city,setStudentCity]=useState('');
   const [student_fees,setStudentFees]=useState('');
   const {addRecord}=useCRUD();
+  const navigate=useNavigate()
   const add=()=>{
-    // let data={student_name,student_city,student_fees};
     addRecord({student_name,student_city,student_fees})
-    
+    navigate('/')
   }
   return (
     <div className='grid place-content-center'>

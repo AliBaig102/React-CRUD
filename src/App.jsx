@@ -29,10 +29,11 @@ function App() {
   }
   const editData=(id,data)=>{
     parameters.body=JSON.stringify(data);
+    parameters.method="POST";
     fetch(fetchAPIURL+`students/update/${id}`,parameters).then(Response=>Response.json())
     .then(data=>{
-      setSingledata({})
       setResult(data)
+      setSingledata({})
     })
   }
   const deleteData=((id)=>{
