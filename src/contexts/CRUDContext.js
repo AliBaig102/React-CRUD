@@ -1,17 +1,19 @@
 import {createContext,useContext} from 'react'
 export const CRUDContext=createContext({
     fetchAPIURL:'http://127.0.0.1:8000/api/',
-    fetchId:'',
+    // fetchId:'',
     parameters:{
-        Method: 'POST',
-            Headers: {
+        method: "POST",
+        body:'',
+            headers: {
                 Accept: 'application.json',
                 'Content-Type': 'application/json'
             }
     },
-    allData:[],
+    allData:[],             
     singledata:{},
-    addData:()=>{},
+    result:{},
+    addRecord:(data)=>{},
     editData:(id,data)=>{},
     deleteData:(id,data)=>{},
     selectAllData:()=>{},

@@ -1,25 +1,29 @@
 import React, { useRef } from 'react'
 import { useCRUD } from '../contexts'
 
-export default function EditPooup({closeModal,setSingledata}) {
+export default function EditPooup({closeModal}) {
   const student_name=useRef()
   const student_city=useRef()
   const student_fees=useRef()
-  const {singledata,editData}=useCRUD();
-  const edit=()=>{
-    editData(singledata.student_id,{
-      student_name:student_name.current.value,
-      student_city:student_city.current.value,
-      student_fees :student_fees.current.value
-    })
-  }
+  let {singledata,editData,result}=useCRUD();
+ 
+  
+  const  edit= ()=>{
+  editData(singledata.student_id,{
+        student_name:student_name.current.value,
+        student_city:student_city.current.value,
+        student_fees :student_fees.current.value
+      })
+      if (result.editResult) {
+        closeModal(false)
+      }
+    }
   return (
     <div className="fixed inset-0 bg-[#00000057] grid place-content-center">
         <div className="bg-white  rounded-md shadow-xl p-3">
             <button 
             className="bg-neutral-500  text-white flex items-center justify-center w-6 h-6 rounded-full text-2xl relative mb-4 left-[90%]"
             onClick={()=>{
-              setSingledata({})
               closeModal(false);
             }}
             >X</button>

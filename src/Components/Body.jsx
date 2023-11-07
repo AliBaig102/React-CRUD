@@ -5,60 +5,24 @@ import EditPooup from './EditPooup';
 import DeletePopup from './DeletePopup';
 
 export default function Body() {
-    const [allData,setallData]=useState([]);
+    // const [allData,setallData]=useState([]);
     const [viewModal,setViewModal]=useState(false);
     const [editModal,setEditModal]=useState(false);
     const [deleteModal,setDeleteModal]=useState(false);
     const [deleteId,setDeleteId]=useState(false);
-    const [singledata,setSingledata]=useState({});
-    const {fetchAPIURL,parameters}=useCRUD();
+    // const [singledata,setSingledata]=useState({});
+    const {allData,selectData,selectAllData}=useCRUD();
+
    
 
-    const selectAllData=()=>{
-      fetch(fetchAPIURL+"students",parameters).then(Response=>Response.json()).then(data=>{
-        setallData([])
-         setallData(data)
-      })
-    }
-    const selectData=(id)=>{
-      fetch(fetchAPIURL+`students/${id}`,parameters).then(Response=>Response.json())
-      .then(data=>{
-        setSingledata({})
-        setSingledata(data)
-      })
-    }
-    const editData=(id,data)=>{
-      fetch(fetchAPIURL+`students/update/${id}`,{
-        method:"POST",
-        body: JSON.stringify(data),
-        headers:{
-          Accept: 'application.json',
-          'Content-Type': 'application/json',
-        },
-      }).then(Response=>Response.json())
-      .then(data=>{
-        setSingledata({})
-        setEditModal(false)
-      })
-    }
-    const deleteData=((id)=>{
-      fetch(fetchAPIURL+`students/delete`,{
-        method:"POST",
-        body: JSON.stringify({student_id:id}),
-        headers:{
-          Accept: 'application.json',
-          'Content-Type': 'application/json',
-        },
-      }).then(Response=>Response.json()).then(data=>{
-        setDeleteModal(false)
-      })
-    })
+    
     useEffect(() => {
         selectAllData();
     }, [allData]);
 
     return (
-      <CRUDProvider value={{ allData,singledata,selectAllData,selectData,editData,deleteData}}>
+      // <CRUDProvider value={{ allData,singledata,selectAllData,selectData,editData,deleteData,addRecord}}>
+      <>
 
     <table className='border-2 mx-auto my-4'>
         <thead >
@@ -103,8 +67,11 @@ export default function Body() {
         </tbody>
     </table>
     {viewModal && <View closeModal={setViewModal}/> }
-    {editModal && <EditPooup closeModal={setEditModal} setSingledata={setSingledata} />}
+    {editModal && <EditPooup closeModal={setEditModal} 
+    // setSingledata={setSingledata}
+     />}
     {deleteModal && <DeletePopup closeModal={setDeleteModal} deleteId={deleteId}/>}
-    </CRUDProvider>
+      </>
+    // </CRUDProvider>
   )
             }

@@ -1,7 +1,7 @@
 import { useCRUD } from "../contexts"
 
 export default function DeletePopup({closeModal,deleteId}) {
-  const {deleteData}=useCRUD();
+  const {deleteData,result}=useCRUD();
   return (
     <div 
     className="fixed inset-0 bg-[#00000057] grid place-content-center"
@@ -22,6 +22,11 @@ export default function DeletePopup({closeModal,deleteId}) {
                 className="bg-red-500 text-white text-3xl px-4 rounded shadow-lg"
                 onClick={()=>{
                   deleteData(deleteId)
+                    console.log(result)
+                  if(result.deleteResult){
+                    closeModal(false)
+                    console.log(result)
+                  }
                 }}
                 >Delete</button>
             </div>
